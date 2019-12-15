@@ -10,7 +10,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1        
-    - name: Configuration
+      # - name: Configuration
       # run : export DOCKER_HOST=tcp://35.246.151.122:2375
     - name: Check version
       run: docker -v   
