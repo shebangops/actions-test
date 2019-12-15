@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - uses: actions/checkout@v1        
     - name: Configuration
     - run : export DOCKER_HOST=tcp://35.246.151.122:2375 
     - name: Check DOCKER_HOST
