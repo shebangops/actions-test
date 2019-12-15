@@ -16,4 +16,4 @@ jobs:
       run: docker -v   
     - uses: actions/checkout@v1
     - name: Build the Docker image
-      run: docker-compose -H  "tcp://vlada92ceo@35.246.151.122:2375" -f docker-compose.yml up frontend
+      run: docker-compose -H  "tcp://vlada92ceo@35.246.151.122:2375" -f docker-compose.yml up frontend -d 
