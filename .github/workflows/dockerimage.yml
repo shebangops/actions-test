@@ -12,6 +12,8 @@ jobs:
     - uses: actions/checkout@v1        
     - name: Configuration
     - run : export DOCKER_HOST=tcp://35.246.151.122:2375 
+    - uses: actions/checkout@v1
+
     - name: Check DOCKER_HOST
     - run: echo $DOCKER_HOST     
     - uses: actions/checkout@v1
