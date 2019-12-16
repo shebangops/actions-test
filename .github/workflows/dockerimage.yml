@@ -12,6 +12,7 @@ jobs:
     - uses: actions/checkout@v1
     - name: Configuration
       env:
+       DOCKER_HOST: ssh://vlada92ceo@35.246.151.122
        deploy_key: ${{ secrets.deploy_key }}
       run: |
        touch gcp
@@ -22,5 +23,5 @@ jobs:
     - name: check version of docker-compose
       run: docker-compose -v        
     - name: Build the Docker image
-      run: docker-compose -H ssh://vlada92ceo@35.246.151.122 -f docker-compose.yml up -d frontend 
+      run: docker-compose -f docker-compose.yml up -d frontend 
 
