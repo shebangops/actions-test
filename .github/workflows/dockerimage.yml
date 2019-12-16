@@ -14,15 +14,8 @@ jobs:
       env:
        deploy_key: ${{ secrets.deploy_key }}
       run: |
-       #mkdir -p ~/.ssh
-       #echo $deploy_key >> ~/.ssh/id_rsa
-       #chmod 400 ~/.ssh/id_rsa
-       #touch ~/.ssh/config
-       #echo 'Host *
-       #      StrictHostKeyChecking no' >  ~/.ssh/config
-       #sudo chmod 400 ~/.ssh/config
-       #eval "$(ssh-agent -s)"
-       #ssh-add - <<< ${deploy_key} 
+       echo
+       
     - name: install latest compose
       run: |
        sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose 
