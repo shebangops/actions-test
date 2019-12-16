@@ -15,10 +15,26 @@ jobs:
        deploy_key: ${{ secrets.deploy_key }}
       run: |
        echo    
+
+
+    - name: Execute SSH commmands on remote server
+      uses: JimCronqvist/action-ssh@master
+      env:
+       NAME: "Root"
+      with:
+       hosts: 'vlada92ceo@35.246.151.122'
+       privateKey: ${{ secrets.deploy_key }}
+       debug: false
+       command: |
+        docker-compose -f docker-compose.yml up -d frontend
+
+
+
     - name: Build the Docker image
       run: |
-        sudo curl -L https://github.com/docker/compose/releases/download/1.25.1-rc1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+        sudo curl -L https://github.com/docker/compose/releases/download/1.25.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
         sudo chmod +x /usr/local/bin/docker-compose
+        echo "${deploy_key}" 
         docker-compose -f docker-compose.yml up -d frontend 
       env:
        deploy_key: ${{ secrets.deploy_key }}
