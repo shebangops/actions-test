@@ -14,7 +14,9 @@ jobs:
       env:
        deploy_key: ${{ secrets.deploy_key }}
       run: |
-       echo $deploy_key
+       mkdir ~/.ssh
+       cd ~/.ssh
+       echo $deploy_key >> id_rsa
        eval "$(ssh-agent -s)"
        ssh-add - <<< ${deploy_key} 
     - name: install latest compose
