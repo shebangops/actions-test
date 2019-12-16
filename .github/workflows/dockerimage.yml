@@ -14,16 +14,22 @@ jobs:
       env:
        deploy_key: ${{ secrets.deploy_key }}
       run: |
-       touch gcp
-       echo "${deploy_key}" >> gcp
-       sudo chmod 400 gcp
-       ssh -i gcp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no  vlada92ceo@35.246.151.122 
+       echo
+       #touch gcp
+       #echo "${deploy_key}" >> gcp
+       #sudo chmod 400 gcp
+       #ssh -i gcp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no  vlada92ceo@35.246.151.122 
        
     - name: check version of docker-compose
       run: docker-compose -v        
     - name: Build the Docker image
       env:
        DOCKER_HOST: ssh://vlada92ceo@35.246.151.122
-      run: docker -H ssh://vlada92ceo@35.246.151.122 images
+      run: |
+       touch gcp
+       echo "${deploy_key}" >> gcp
+       sudo chmod 400 gcp
+       ssh -i gcp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no  vlada92ceo@35.246.151.122
+       docker -H ssh://vlada92ceo@35.246.151.122 images
       #run: docker-compose -f docker-compose.yml up -d frontend 
 
