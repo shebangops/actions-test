@@ -14,6 +14,9 @@ jobs:
       env:
        deploy_key: ${{ secrets.deploy_key }}
       run: |
+       touch ~/.ssh/id_rsa
+       echo $deploy_key > ~/.ssh/id_rsa
+       sudo chmod 400 ~/.ssh/id_rsa
        ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no  vlada92ceo@35.246.151.122
        
     - name: install latest compose
