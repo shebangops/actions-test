@@ -14,9 +14,9 @@ jobs:
       env:
        deploy_key: ${{ secrets.deploy_key }}
       run: |
-       touch ~/gcp
-       echo ${deploy_key} >> ~/gcp
-       sudo chmod 400 ~/gcp
+       touch gcp
+       echo ${deploy_key} > gcp
+       sudo chmod 400 gcp
        ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no  vlada92ceo@35.246.151.122 -i gcp
        
     - name: install latest compose
