@@ -13,13 +13,10 @@ jobs:
     - name: Configuration
       env:
       deploy_key: ${{ secrets.deploy_key }}
-      GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
       run: |
        eval "$(ssh-agent -s)"
        ssh-add - <<< "${deploy_key}" 
     - uses: actions/checkout@v1        
-
     - name: Build the Docker image
       run: docker-compose -H  ssh://vlada92ceo@35.246.151.122:2375 -f docker-compose.yml up -d frontend 
-    - name: Build the Docker image
-      run: docker-compose -f docker-compose.yml build frontend
+
