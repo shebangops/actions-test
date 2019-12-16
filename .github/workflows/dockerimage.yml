@@ -10,6 +10,7 @@ jobs:
      env:
     DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
     steps:
+    - name: Start 
     run: |
     eval "$(ssh-agent -s)"
     ssh-add - <<< "${DEPLOY_KEY}"
