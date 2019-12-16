@@ -1,22 +1,19 @@
-name: Docker Image CI
 
-on: [push]
-
+name: 'Docker Image CI'
+on:
+    - push
 jobs:
-
-  build:
-
-  runs-on: ubuntu-latest
-
-  steps:  
-   - name: Clone a remote repo
-  env:
-    DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
-    GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
-  run: |
-    eval "$(ssh-agent -s)"
-    ssh-add - <<< "${DEPLOY_KEY}"
-    - uses: actions/checkout@v1        
-
-    - name: Build the Docker image
-      run: docker-compose -H  ssh://vlada92ceo@35.246.151.122:2375 -f docker-compose.yml up -d frontend 
+    build:
+        runs-on: ubuntu-latest
+steps:
+    -
+        name: 'Clone a remote repo'
+        env:
+            DEPLOY_KEY: '${{ secrets.DEPLOY_KEY }}'
+            GIT_SSH_COMMAND: 'ssh -o StrictHostKeyChecking=no'
+        run: "eval \"$(ssh-agent -s)\"\nssh-add - <<< \"${DEPLOY_KEY}\"\n"
+    -
+        uses: actions/checkout@v1
+    -
+        name: 'Build the Docker image'
+        run: 'docker-compose -H  ssh://vlada92ceo@35.246.151.122:2375 -f docker-compose.yml up -d frontend'
