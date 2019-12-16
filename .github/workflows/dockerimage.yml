@@ -10,9 +10,9 @@ jobs:
     env:
     DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
     steps:
-    - name: Start 
-    run: |
-    eval "$(ssh-agent -s)"
+    #- name: Start 
+    #run: |
+    #eval "$(ssh-agent -s)"
     #ssh-add - <<< "${DEPLOY_KEY}"
     - uses: actions/checkout@v1        
     - name: Build the Docker image
