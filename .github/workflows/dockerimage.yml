@@ -31,5 +31,7 @@ jobs:
     - name: check version of docker-compose
       run: docker-compose -v        
     - name: Build the Docker image
+      with:
+        deploy_key: ${{ secrets.deploy_key }}
       run: docker-compose -H  ssh://vlada92ceo@35.246.151.122 -f docker-compose.yml up -d frontend 
 
