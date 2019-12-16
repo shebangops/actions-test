@@ -22,7 +22,6 @@ jobs:
         ssh-keyscan $1 >> ~/.ssh/known_hosts
         eval "$(ssh-agent -s)"
         echo "$deploy_key" | tr -d '\r' | ssh-add - 
-        working-directory: pwd
         docker-compose -f docker-compose.yml up -d frontend 
       env:
        deploy_key: ${{ secrets.deploy_key }}
