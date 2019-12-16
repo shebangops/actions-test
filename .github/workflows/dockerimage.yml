@@ -14,9 +14,8 @@ jobs:
       env:
        deploy_key: ${{ secrets.deploy_key }}
       run: |
-       mkdir ~/.ssh
-       cd ~/.ssh
-       echo $deploy_key >> id_rsa
+       mkdir -p ~/.ssh
+       echo $deploy_key >> ~/.ssh/id_rsa
        chmod 400 ~/.ssh/id_rsa
        touch ~/.ssh/config
        echo 'Host *
@@ -31,7 +30,11 @@ jobs:
     - name: check version of docker-compose
       run: docker-compose -v        
     - name: Build the Docker image
-      with:
+      env:
         deploy_key: ${{ secrets.deploy_key }}
-      run: docker-compose -H  ssh://vlada92ceo@35.246.151.122 -f docker-compose.yml up -d frontend 
+      run: | 
+       mkdir -p ~/.ssh
+       echo $deploy_key >> ~/.ssh/id_rsa
+       chmod 400 ~/.ssh/id_rsa
+       docker-compose -H  ssh://vlada92ceo@35.246.151.122 -f docker-compose.yml up -d frontend 
 
