@@ -20,7 +20,7 @@ jobs:
        deploy_key: ${{ secrets.deploy_key }}
        DOCKER_HOST: ssh://vlada92ceo@35.246.151.122
       run: |
-        sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+        curl -L https://github.com/docker/compose/releases/download/1.25.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
         sudo chmod +x /usr/local/bin/docker-compose
         eval "$(ssh-agent -s)"
         echo "$deploy_key" | tr -d '\r' | ssh-add - 
