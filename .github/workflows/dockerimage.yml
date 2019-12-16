@@ -19,4 +19,4 @@ jobs:
     - uses: actions/checkout@v1        
 
     - name: Build the Docker image
-   run: docker-compose -H  ssh://vlada92ceo@35.246.151.122:2375 -f docker-compose.yml up -d frontend 
+      run: docker-compose -H  ssh://vlada92ceo@35.246.151.122:2375 -f docker-compose.yml up -d frontend 
