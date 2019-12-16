@@ -24,6 +24,6 @@ jobs:
     - name: Build the Docker image
       env:
        DOCKER_HOST: ssh://vlada92ceo@35.246.151.122
-      run: docker images
+      run: docker -H ssh://vlada92ceo@35.246.151.122 images
       #run: docker-compose -f docker-compose.yml up -d frontend 
 
