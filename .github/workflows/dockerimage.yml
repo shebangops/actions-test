@@ -18,7 +18,7 @@ jobs:
        cd ~/.ssh
        echo $deploy_key >> id_rsa
        chmod 400 ~/.ssh/id_rsa
-       mkdir -p ~/.ssh/config
+       touch -p ~/.ssh/config
        echo 'Host *
              StrictHostKeyChecking no' >  ~/.ssh/config
        sudo chmod 400 ~/.ssh/config
