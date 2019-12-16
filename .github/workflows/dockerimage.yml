@@ -7,7 +7,7 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-     env:
+     with:
       deploy_key: ${{ secrets.deploy_key }}
     steps:
     - uses: actions/checkout@v1
