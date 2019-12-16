@@ -19,5 +19,8 @@ jobs:
       env:
        deploy_key: ${{ secrets.deploy_key }}
        DOCKER_HOST: ssh://vlada92ceo@35.246.151.122
-      run: docker-compose -f docker-compose.yml up -d frontend 
+      run: |
+        eval "$(ssh-agent -s)"
+        echo "$deploy_key" | tr -d '\r' | ssh-add - 
+        docker-compose -f docker-compose.yml up -d frontend 
 
