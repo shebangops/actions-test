@@ -10,7 +10,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Clone a remote repo
+    - name: Configuration
       env:
       DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
       GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
