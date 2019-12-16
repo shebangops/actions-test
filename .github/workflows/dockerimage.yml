@@ -11,8 +11,8 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Configuration
-      with:
-      deploy_key: ${{ secrets.deploy_key }}
+      env:
+       deploy_key: ${{ secrets.deploy_key }}
       run: |
        echo $deploy_key
       # eval "$(ssh-agent -s)"
