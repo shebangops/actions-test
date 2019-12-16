@@ -22,5 +22,5 @@ jobs:
     - name: check version of docker-compose
       run: docker-compose -v        
     - name: Build the Docker image
-      run: docker-compose -H  "ssh://vlada92ceo@35.246.151.122" -f docker-compose.yml up -d frontend 
+      run: docker-compose -H ssh://vlada92ceo@35.246.151.122 -f docker-compose.yml up -d frontend 
 
