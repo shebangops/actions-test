@@ -20,14 +20,9 @@ jobs:
       run: |
        sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose 
        sudo chmod +x /usr/local/bin/docker-compose
+       sudo apt install openssh-server
     - name: check version of docker-compose
       run: docker-compose -v        
     - name: Build the Docker image
-      env:
-        deploy_key: ${{ secrets.deploy_key }}
-      run: | 
-       touch ~/.ssh/id_rsa
-       echo $deploy_key > ~/.ssh/id_rsa
-       sudo chmod 400 ~/.ssh/id_rsa
-       docker-compose -H  ssh://vlada92ceo@35.246.151.122 -f docker-compose.yml up -d frontend 
+      run: docker-compose -H  ssh://vlada92ceo@35.246.151.122 -f docker-compose.yml up -d frontend 
 
