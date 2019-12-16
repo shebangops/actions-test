@@ -7,12 +7,11 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+     env:
+      deploy_key: ${{ secrets.deploy_key }}
     steps:
     - uses: actions/checkout@v1
     - name: Configuration
-      env:
-      deploy_key: ${{ secrets.deploy_key }}
       run: |
        echo $deploy_key
       # eval "$(ssh-agent -s)"
