@@ -21,7 +21,7 @@ jobs:
         sudo chmod +x /usr/local/bin/docker-compose
         mkdir -p ~/.ssh
         #ssh-keyscan 35.246.151.122 > ~/.ssh/known_hosts      
-        ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+        #ssh-agent -a $SSH_AUTH_SOCK > /dev/null
         #ssh-add - <<< " $"
         echo "${deploy_key}" >> ~/.ssh/id_rsa
         sudo chmod 400 ~/.ssh/id_rsa
