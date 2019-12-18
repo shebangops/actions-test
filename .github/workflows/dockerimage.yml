@@ -6,29 +6,25 @@ jobs:
 
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     
     steps:
     - uses: actions/checkout@v1
     - name: Configuration
-      #env:
-       #deploy_key: ${{ secrets.deploy_key }}
-      run: |
-         docker-compose -f docker-compose.yml up -d frontend 
       env:
         DOCKER_CERT_PATH: ${{ secrets.DOCKER_CERT_PATH }}
         DOCKER_HOST: ssh://vlada92ceo@35.246.151.122
 
-   # - name: Build the Docker image
-    #  run: |
-    #    sudo curl -L https://github.com/docker/compose/releases/download/1.25.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
-    #    sudo chmod +x /usr/local/bin/docker-compose
-        #ssh-keygen -m PEM -t rsa -b 4096 -C “your_email@example.com”
-        #ssh-copy-id vlada92ceo@35.246.151.122
-        #echo "${deploy_key}" >> ~/.ssh/id_rsa
-        #sudo chmod 400 ~/.ssh/id_rsa
-        #export DOCKER_CERT_PATH="/etc/docker/server.pem"
-        #echo "${deploy_key}" >> ~/id_rsa.pem
+    - name: Build the Docker image
+      run: |
+        sudo curl -L https://github.com/docker/compose/releases/download/1.25.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+        sudo chmod +x /usr/local/bin/docker-compose
+        mkdir -p ~/.ssh
+        ssh-keyscan 35.246.151.122 >> ~/.ssh/known_hosts      
+        
+        echo "${deploy_key}" >> ~/.ssh/id_rsa
+        sudo chmod 400 ~/.ssh/id_rsa
+        docker-compose -H  ssh://vlada92ceo@35.246.151.122:2375 -f docker-compose.yml up -d frontend
         
         
       
