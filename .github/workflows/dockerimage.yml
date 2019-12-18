@@ -23,13 +23,8 @@ jobs:
         mkdir -p ~/.ssh
         touch ~/.ssh/known_hosts
         ssh-keyscan 35.246.151.122 >> ~/.ssh/known_hosts      
-        #ssh-agent -a $SSH_AUTH_SOCK > /dev/null
-        #ssh-add - <<< " $"
         echo "${deploy_key}" >> ~/.ssh/id_rsa
         sudo chmod 400 ~/.ssh/id_rsa
-        #touch ~/.ssh/config
-        #sudo chmod 400 ~/.ssh/config
-        ls -la ~/.ssh/id_rsa
         docker-compose -f docker-compose.yml up -d frontend
       
         
