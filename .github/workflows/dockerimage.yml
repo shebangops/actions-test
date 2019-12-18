@@ -10,12 +10,13 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
-    - name: Configuration
-      env:
-        DOCKER_CERT_PATH: ${{ secrets.DOCKER_CERT_PATH }}
-        DOCKER_HOST: ssh://vlada92ceo@35.246.151.122
+    #- name: Configuration
+    #  env:
+    #    DOCKER_HOST: ssh://vlada92ceo@35.246.151.122
 
     - name: Build the Docker image
+      env: 
+        deploy_key: ${{ secrets.DOCKER_CERT_PATH }}
       run: |
         sudo curl -L https://github.com/docker/compose/releases/download/1.25.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
         sudo chmod +x /usr/local/bin/docker-compose
@@ -25,6 +26,7 @@ jobs:
         echo "${deploy_key}" >> ~/.ssh/id_rsa
         sudo chmod 400 ~/.ssh/id_rsa
         docker-compose -H  ssh://vlada92ceo@35.246.151.122:2375 -f docker-compose.yml up -d frontend
+      
         
         
       
