@@ -2,8 +2,8 @@ name: Remote Dispatch Action Initiator
  
 on:
   push:
-  #schedule:
-  # - cron: '* * * * *'
+  schedule:
+   - cron: '* * * * *'
   repository_dispatch:
 jobs:
   ping-pong:
