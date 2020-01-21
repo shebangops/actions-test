@@ -15,7 +15,7 @@ jobs:
       - name: ACK - Acknowledge pong from remote repositoryy
         if: github.event.action == 'pong'
         run: |
-          sleep 30
+          sleep 5
           echo "PONG received from '${{ github.event.client_payload.repository }}'" && \
           curl -X POST https://api.github.com/repos/shebangops/action-b/dispatches \
           -u ${{ secrets.ACCESS_TOKEN }} \
