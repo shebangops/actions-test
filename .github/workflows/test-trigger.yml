@@ -20,6 +20,6 @@ jobs:
         if: github.event.action == 'pong'
         run: |
           echo "PONG received from '${{ github.event.client_payload.repository }}'" && \
-          curl -X POST https://github.com/shebangops/action-B \
+          curl -X POST https://api.github.com/repos/shebangops/action-B/dispatches \
           -u ${{ secrets.ACCESS_TOKEN }} \
           --data '{"event_type": "ack", "client_payload": { "repository": "'"$GITHUB_REPOSITORY"'" }}'
