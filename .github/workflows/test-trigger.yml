@@ -9,7 +9,7 @@ jobs:
   ping-pong:
     runs-on: ubuntu-latest
     steps:
-      - name: PING - Dispatch initiating repository eventt
+      - name: PING - Dispatch initiating repository event
         if: github.event.action != 'pong'
         run: |
           curl -X POST https://api.github.com/repos/shebangops/action-b/dispatches -u ${{ secrets.ACCESS_TOKEN }} -H 'Accept: application/vnd.github.v3+json' --data '{"event_type": "ping", "client_payload": { "repository": "'"$GITHUB_REPOSITORY"'" }}'
