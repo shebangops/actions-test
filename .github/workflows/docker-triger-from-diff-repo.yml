@@ -1,4 +1,4 @@
-name: Remote Dispatch Action Responder
+name: Trigger from diff repo
 
 on: [repository_dispatch]
 
