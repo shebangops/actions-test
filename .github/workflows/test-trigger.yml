@@ -2,8 +2,9 @@ name: Remote Dispatch Action Initiator
  
 on:
   push:
+  schedule:
+    - cron: '* * * * *'
   repository_dispatch:
- 
 jobs:
   ping-pong:
     runs-on: ubuntu-latest
