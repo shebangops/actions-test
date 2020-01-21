@@ -13,6 +13,7 @@ jobs:
         if: github.event.action != 'pong'
         run: |
           curl -X POST https://github.com/shebangops/action-B \
+          -H 'Accept: application/vnd.github.everest-preview+json' \
           -u ${{ secrets.ACCESS_TOKEN }} \
           --data '{"event_type": "ping", "client_payload": { "repository": "'"$GITHUB_REPOSITORY"'" }}'
       - name: ACK - Acknowledge pong from remote repository
